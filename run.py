@@ -1,5 +1,5 @@
 import math
-from algorithm import wyzarzanie  # import Twojego algorytmu
+from algorithm import annealing
 from functions import ex3_f, ex3_domain, ex4_f, ex4_domain
 
 def main():
@@ -31,22 +31,18 @@ def main():
     alpha = float(input("Współczynnik chłodzenia α (np. 0.95–0.999): "))
     M = int(input("Liczba iteracji M: "))
     k = float(input("Współczynnik k: "))
-    beta = float(input("Współczynnik beta (zasięg sąsiadów, np. 0.02): ") or 0.02)
     L = int(input("Liczba prób w jednej epoce L (np. 1): ") or 1)
-    seed = int(input("Ziarno losowości (np. 42): ") or 42)
 
     print("\nRozpoczynam działanie algorytmu...\n")
 
-    result = wyzarzanie(
+    result = annealing(
         eval_fn=eval_fn,
         domain=domain,
         T0=T0,
         alpha=alpha,
         M=M,
         k=k,
-        beta=beta,
-        L=L,
-        seed=seed,
+        L=L
     )
 
     print("=== WYNIKI SYMULOWANEGO WYŻARZANIA ===")

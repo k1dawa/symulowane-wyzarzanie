@@ -1,9 +1,8 @@
 import math
-from typing import Tuple
 
 #rozdzial 3
 def ex3_domain():
-    return (-150.0, 150.0)
+    return -150.0, 150.0
 
 def ex3_f(x: float):
     if -105 < x < -95:
@@ -15,7 +14,7 @@ def ex3_f(x: float):
 
 #rozdzail 4
 def ex4_domain():
-    return (-1.0, 2.0)
+    return -1.0, 2.0
 
 def ex4_f(x: float):
     return x * math.sin(10 * math.pi * x) + 1
