@@ -12,7 +12,7 @@ def ex3_f(x: float):
     else:
         return 0.0
 
-#rozdzail 4
+#rozdzial 4
 def ex4_domain():
     return -1.0, 2.0
 

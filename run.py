@@ -29,7 +29,6 @@ def main():
     alpha = float(input("Współczynnik chłodzenia α: "))
     M = int(input("Liczba iteracji M: "))
     k = float(input("Współczynnik k: "))
-    L = int(input("Liczba prób w jednej epoce L: ") or 1)
 
     print("\nRozpoczynam działanie algorytmu...\n")
 
@@ -39,8 +38,7 @@ def main():
         T0=T0,
         alpha=alpha,
         M=M,
-        k=k,
-        L=L
+        k=k
     )
 
     print("=== WYNIKI ===")

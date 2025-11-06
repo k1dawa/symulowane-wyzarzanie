@@ -33,7 +33,7 @@ def neighbor(x, T, lb, ub, T0, rng: random.Random):
     return reflect(x_new, lb, ub)
 
 def annealing(eval_fn: Callable[[float], float], domain: Tuple[float, float],
-                        T0, alpha, M, k, L: int = 1) -> Dict[str, Any]:
+                        T0, alpha, M, k) -> Dict[str, Any]:
     rng = random.Random()
 
     lb, ub = domain
@@ -46,7 +46,7 @@ def annealing(eval_fn: Callable[[float], float], domain: Tuple[float, float],
     n_worse = 0
     t0 = time.time()
 
-    for step in range(1, M + 1):
+    for _ in range(1, M + 1):
         #sąsiad
         x_c = neighbor(x, T, lb, ub, T0, rng)
         f_c = eval_fn(x_c)
@@ -63,13 +63,10 @@ def annealing(eval_fn: Callable[[float], float], domain: Tuple[float, float],
             if f > f_best:
                 x_best, f_best = x, f
 
-        #chłodzenie (co krok lub po L próbach)
-        if L <= 1:
-            T *= alpha
-        elif step % L == 0:
-            T *= alpha
+        #chłodzenie co krok
         if T < 1e-12:
             break
+        T *= alpha
 
     return {
         "x_best": x_best,
