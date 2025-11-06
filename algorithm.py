@@ -4,7 +4,7 @@ import random
 import time
 
 #kryterium akceptacji
-def acceptance(delta_f: float, T: float, k: float, rng: random.Random):
+def acceptance(delta_f, T, k, rng: random.Random):
     if delta_f >= 0:
         return True
     if T <= 0 or k <= 0:
@@ -12,8 +12,7 @@ def acceptance(delta_f: float, T: float, k: float, rng: random.Random):
     p = math.exp(delta_f / (k * T))  
     return rng.random() < p
 
-
-def reflect(x: float, lb: float, ub: float):
+def reflect(x, lb, ub):
     #odbicie do [lb, ub]
     while x < lb or x > ub:
         if x < lb:
@@ -22,9 +21,7 @@ def reflect(x: float, lb: float, ub: float):
             x = ub - (x - ub)
     return x
 
-
-def neighbor(x: float, T: float, lb: float, ub: float, T0: float,
-                rng: random.Random):
+def neighbor(x, T, lb, ub, T0, rng: random.Random):
 
     width = ub - lb
     s = (T / T0) * width
@@ -35,10 +32,8 @@ def neighbor(x: float, T: float, lb: float, ub: float, T0: float,
     x_new = x + rng.uniform(-s, s)
     return reflect(x_new, lb, ub)
 
-def annealing(eval_fn: Callable[[float], float],
-                        domain: Tuple[float, float],
-                        T0: float, alpha: float, M: int, k: float,
-                        L: int = 1) -> Dict[str, Any]:
+def annealing(eval_fn: Callable[[float], float], domain: Tuple[float, float],
+                        T0, alpha, M, k, L: int = 1) -> Dict[str, Any]:
     rng = random.Random()
 
     lb, ub = domain
